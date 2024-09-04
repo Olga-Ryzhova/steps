@@ -26,12 +26,15 @@ class App extends Component {
 			if (existingItemIndex > -1) {
 				const updatedData = [...data];
 
-				updatedData[existingItemIndex] = {
+				const newRecord = {
 					...updatedData[existingItemIndex],
-					distance: (updatedData[existingItemIndex].distance + parseFloat(distance)).toFixed(1),
 				};
-				return { data: updatedData };
+
+				const newDistance = newRecord.distance + Number.parseFloat(distance);
+				newRecord.distance = newDistance;
+				updatedData[existingItemIndex] = newRecord;
 				
+				return { data: updatedData };
 			} else {
 				// если записи нет, добавляем новую
 				const newItem = {
